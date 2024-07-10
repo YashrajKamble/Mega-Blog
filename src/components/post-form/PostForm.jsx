@@ -12,12 +12,12 @@ function PostForm({ post }) {
         title: post?.title || "",
         slug: post?.slug || "",
         content: post?.status || "",
-        status: post?.status || "",
+        status: post?.status || "active",
       },
     });
 
   const naviagte = useNavigate();
-  const userData = useSelector((state) => state.user, userData);
+  const userData = useSelector((state) => state.user.userData);
 
   const submit = async (data) => {
     if (post) {
