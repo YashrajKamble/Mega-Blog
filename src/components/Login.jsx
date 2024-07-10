@@ -18,7 +18,7 @@ function Login() {
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser();
-        if (userData) dispatch(authService(authLogin));
+        if (userData) dispatch(authLogin(userData));
         navigate("/");
       }
     } catch (error) {
@@ -42,7 +42,7 @@ function Login() {
         </h2>
 
         <p className="mt-2 text-center text-base text-black/60">
-          Do&apos; t have any account?&nbsp;
+          Don&apos;t have any account?&nbsp;
           <Link
             to="/signup"
             className="font-medium text-primary transition-all duration-200 hover:underline"
@@ -52,6 +52,7 @@ function Login() {
         </p>
 
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+
         <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
             <Input
