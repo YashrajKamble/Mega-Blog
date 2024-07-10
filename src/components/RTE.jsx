@@ -1,7 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
 
-export default function RTE({ label, name, control }) {
+export default function RTE({ label, name, control, defaultValue = "" }) {
   return (
     <div className="w-full">
       {label && <label className="inline-block mb-1 pl-1">{label}</label>}
@@ -9,13 +9,12 @@ export default function RTE({ label, name, control }) {
       <Controller
         name={name || "content"}
         control={control}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { onChange } }) => (
           <Editor
-            initialValue="default value"
-            value={value}
-            onEditorChange={onChange}
+            initialValue={defaultValue}
             init={{
               branding: false,
+              initialValue: defaultValue,
               height: 500,
               menubar: true,
               plugins: [
@@ -45,6 +44,7 @@ export default function RTE({ label, name, control }) {
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
+            onEditorChange={onChange}
           />
         )}
       />
