@@ -57,7 +57,7 @@ function Signup() {
           <div className="space-y-5">
             <Input
               label="Full Name"
-              placeholder="ENter Your Full Name"
+              placeholder="Enter Your Full Name"
               {...register("name", {
                 required: true,
               })}
