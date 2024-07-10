@@ -13,7 +13,6 @@ export default function RTE({ label, name, control, defaultValue = "" }) {
           <Editor
             initialValue={defaultValue}
             init={{
-              branding: false,
               initialValue: defaultValue,
               height: 500,
               menubar: true,
