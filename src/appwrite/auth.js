@@ -1,7 +1,7 @@
 import conf from "../conf/conf";
 import { Client, Account, ID } from "appwrite";
 
-class AuthService {
+export class AuthService {
   client = new Client();
   account;
 
@@ -46,8 +46,8 @@ class AuthService {
       return await this.account.get();
     } catch (error) {
       console.error("Appwrite service::getCurrentUser::error", error);
-      return null;
     }
+    return null;
   }
 
   async logout() {
