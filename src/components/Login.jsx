@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Login as authLogin } from "./index";
+import { login as authLogin } from "../store/authSlice";
 import { Input, Logo, Button } from "./index";
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/auth";
@@ -81,7 +81,6 @@ export default function Login() {
             <Button type="submit" className="w-full">
               Sign In
             </Button>
-
           </div>
         </form>
       </div>
