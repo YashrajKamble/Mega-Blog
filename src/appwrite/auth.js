@@ -12,22 +12,20 @@ export class AuthService {
     this.account = new Account(this.client);
   }
 
-  async createAccount({ email, password, name }) {
+  async createAccount({ name, email, password }) {
     try {
       const userAccount = await this.account.create(
         ID.unique(),
+        name,
         email,
-        password,
-        name
+        password
       );
-
       if (userAccount) {
         // call another method
         return this.login({ email, password });
       } else {
         return userAccount;
       }
-
     } catch (error) {
       console.error("Error during account creation:", error);
       throw error;
@@ -36,7 +34,7 @@ export class AuthService {
 
   async login({ email, password }) {
     try {
-      return await this.account.createEmailSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
       console.error("Error during account login", error);
       throw error;
@@ -47,10 +45,9 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log("Appwrite service::getCurrentUser::error", error);
+      console.error("Appwrite service::getCurrentUser::error", error);
+      return null;
     }
-
-    return null;
   }
 
   async logout() {
