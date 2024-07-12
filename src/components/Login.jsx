@@ -6,7 +6,7 @@ import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-function Login() {
+export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
@@ -68,6 +68,7 @@ function Login() {
                 },
               })}
             />
+
             <Input
               label="Password"
               type="password"
@@ -80,6 +81,7 @@ function Login() {
             <Button type="submit" className="w-full">
               Sign In
             </Button>
+
           </div>
         </form>
       </div>
@@ -87,4 +89,4 @@ function Login() {
   );
 }
 
-export default Login;
+// export default Login;

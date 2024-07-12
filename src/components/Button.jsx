@@ -1,4 +1,3 @@
-
 function Button({
   children,
   type = "button",

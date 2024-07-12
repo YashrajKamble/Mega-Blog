@@ -20,12 +20,14 @@ export class AuthService {
         password,
         name
       );
+
       if (userAccount) {
         // call another method
         return this.login({ email, password });
       } else {
         return userAccount;
       }
+
     } catch (error) {
       console.error("Error during account creation:", error);
       throw error;
@@ -45,7 +47,7 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log("Appwrite service :: getCurrentUser :: error", error);
+      console.log("Appwrite service::getCurrentUser::error", error);
     }
 
     return null;

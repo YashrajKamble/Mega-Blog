@@ -5,7 +5,7 @@ import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function PostForm({ post }) {
+export default function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -22,7 +22,7 @@ function PostForm({ post }) {
   const submit = async (data) => {
     if (post) {
       const file = data.image[0]
-        ? appwriteService.uploadFile(data.image[0])
+        ? await appwriteService.uploadFile(data.image[0])
         : null;
 
       if (file) {
@@ -37,6 +37,7 @@ function PostForm({ post }) {
           naviagte(`/post/${dbPost.$id}`);
         },
       });
+
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
       if (file) {
@@ -84,6 +85,7 @@ function PostForm({ post }) {
           className="mb-4"
           {...register("title", { required: true })}
         />
+
         <Input
           label="Slug :"
           placeholder="Slug"
@@ -95,13 +97,16 @@ function PostForm({ post }) {
             });
           }}
         />
+
         <RTE
           label="Content :"
           name="content"
           control={control}
           defaultValue={getValues("content")}
         />
+
       </div>
+
       <div className="w-1/3 px-2">
         <Input
           label="Featured Image :"
@@ -110,6 +115,7 @@ function PostForm({ post }) {
           accept="image/png, image/jpg, image/jpeg, image/gif"
           {...register("image", { required: !post })}
         />
+
         {post && (
           <div className="w-full mb-4">
             <img
@@ -119,12 +125,14 @@ function PostForm({ post }) {
             />
           </div>
         )}
+
         <Select
           options={["active", "inactive"]}
           label="Status"
           className="mb-4"
           {...register("status", { required: true })}
         />
+
         <Button
           type="submit"
           bgColor={post ? "bg-green-500" : undefined}
@@ -132,9 +140,10 @@ function PostForm({ post }) {
         >
           {post ? "Update" : "Submit"}
         </Button>
+
       </div>
     </form>
   );
 }
 
-export default PostForm;
+// export default PostForm;
