@@ -11,7 +11,7 @@ export default function PostForm({ post }) {
       defaultValues: {
         title: post?.title || "",
         slug: post?.slug || "",
-        content: post?.status || "",
+        content: post?.content || "",
         status: post?.status || "active",
       },
     });
@@ -37,7 +37,6 @@ export default function PostForm({ post }) {
           naviagte(`/post/${dbPost.$id}`);
         },
       });
-
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
       if (file) {
@@ -104,7 +103,6 @@ export default function PostForm({ post }) {
           control={control}
           defaultValue={getValues("content")}
         />
-
       </div>
 
       <div className="w-1/3 px-2">
@@ -140,7 +138,6 @@ export default function PostForm({ post }) {
         >
           {post ? "Update" : "Submit"}
         </Button>
-
       </div>
     </form>
   );
