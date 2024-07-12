@@ -13,6 +13,7 @@ export class Service {
     this.databases = new Databases(this.client);
     this.bucket = new Storage(this.client);
   }
+
   async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
       return await this.databases.createDocument(
@@ -20,15 +21,15 @@ export class Service {
         conf.appwriteCollectionId,
         slug,
         {
-          title,
-          content,
-          featuredImage,
-          status,
-          userId,
+          title: title,
+          content: content,
+          featuredImage: featuredImage,
+          status: status,
+          userId: userId,
         }
       );
     } catch (error) {
-      console.log("appwrite service::createPOst::error", error);
+      console.error("appwrite service::createPOst::error", error);
     }
   }
 
@@ -42,11 +43,11 @@ export class Service {
           title,
           content,
           featuredImage,
-          status,
+          status
         }
       );
     } catch (error) {
-      console.log("appwrite service::updatePost::error", error);
+      console.error("appwrite service::updatePost::error", error);
     }
   }
 
@@ -59,7 +60,7 @@ export class Service {
       );
       return true;
     } catch (error) {
-      console.log("appwrite service::deletePost::error", error);
+      console.error("appwrite service::deletePost::error", error);
       return false;
     }
   }
@@ -72,7 +73,7 @@ export class Service {
         slug
       );
     } catch (error) {
-      console.log("appewrite service::getPost::error", error);
+      console.error("appewrite service::getPost::error", error);
       return false;
     }
   }
@@ -85,7 +86,7 @@ export class Service {
         queries
       )
     } catch (error) {
-      console.log("Appwrite service::getPosts::error", error);
+      console.error("Appwrite service::getPosts::error", error);
       return false
     }
   }
@@ -98,7 +99,7 @@ export class Service {
         file
       );
     } catch (error) {
-      console.log("appewrite service::uploadFile::error", error);
+      console.error("appewrite service::uploadFile::error", error);
       return false;
     }
   }
@@ -108,7 +109,7 @@ export class Service {
       await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
       return true;
     } catch (error) {
-      console.log("appwrite service::deleteFile::error", error);
+      console.error("appwrite service::deleteFile::error", error);
       return false;
     }
   }
